@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <html lang="ja">
+        <meta charset="UTF-8">
+        <title>メニュー一覧</title>
+        <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css" type="text/css">
+    </head>
+    <body ID="menu">
+        <div ID="header">RaspClock</div>
+        <div ID="content">
+            <form action="/menu", method="GET">
+                <p>Please set time<br>
+                Hour:<select name="Hour" class="select_dropdown">
+                    % for i in range(24):
+                        <option value={{str(i)}}>{{i}}</option>
+                    % end
+                    </select>
+                <br>
+                Minute:<select name="Minute" class="select_dropdown">
+                    % for i in range(0,60,5):
+                        <option value={{str(i)}}>{{i}}</option>
+                    % end
+                    </select>
+                </p>
+                <input type="submit" class="square_btn">
+            </form>
+        </div>
+    </body>
+</html>

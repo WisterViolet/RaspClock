@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <html lang="ja">
+        <meta charset="UTF-8">
+        <title>メニュー一覧</title>
+        <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css" type="text/css">
+    </head>
+    <body ID="menu">
+        <div ID="header">RaspClock</div>
+        <div ID="content">
+            % if time_IsSet:
+                <p>Time Setted!</p>
+            % end
+            % if music_IsSet:
+                <p>Music Setted!</p>
+            % end
+            <a href="/time" class="square_btn">時刻設定</a>
+            <a href="/music" class="square_btn">音楽設定</a>
+        </div>
+    </body>
+</html>

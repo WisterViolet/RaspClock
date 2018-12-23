@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <html lang="ja">
+        <meta charset="UTF-8">
+        <title>メニュー一覧</title>
+        <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css" type="text/css">
+    </head>
+    <body ID="menu">
+        <div ID="header">RaspClock</div>
+        <div ID="content">
+            % if badfile_IsSet:
+                <script type="text/javascript">
+                    alert("File extension not allowed!!")
+                </script>
+            % end
+            <form action="/menu" method="POST" enctype="multipart/form-data">
+                <p>Please select .mp3 file<br>
+                <label for="upload_mp3" ID="choose_file">
+                    <b>Choose .mp3</b>
+                    <input type="file" name="upload" id="upload_mp3" style="display: none;" accept="audio/mp3">
+                </label>
+                <input type="submit" class="square_btn" value="Upload">
+            </form>
+        </div>
+    </body>
+</html>
