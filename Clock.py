@@ -1,14 +1,18 @@
 import sys
+import random
 import datetime as dt
 import Twipost
 import subprocess
 import time
 import RPi.GPIO as GPIO
+from gtts import gTTS
 
 AlarmTime = dt.time(0, 00)
 MusicPath = ''
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.IN)
+kusolist = ['H1_y0_k0', 'toritobaritori']
+weekdays = ['月', '火', '水', '木', '金', '土', '日']
 
 
 def setAlarm():
@@ -50,7 +54,9 @@ def clocking():
                 flag = False
                 if(now.hour == AlarmTime.hour):
                     print('A')
-                    proc = subprocess.Popen(['python3','Ringing.py'], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+                    data = gTTS(text="おはようございます!今日は、{}月{}日、{}曜日です。".format(now.month, now.day, weekdays[now.weekday]), lang='ja')
+                    data.save('./static/great.mp3')
+                    proc = subprocess.Popen(['python3', 'Ringing.py'], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
                     Twipost.Twi_aupos("Asa!")
         else:
             if flag and bflag:
@@ -60,7 +66,7 @@ def clocking():
                        (bTime.minute == AlarmTime.minute)):
                         flag = False
                         print('B')
-                        Twipost.Twi_aupos('{}minutes late'.format(int(t.seconds/60)))
+                        Twipost.Twi_aupos('@{}\n{}minutes late'.format(kusolist[random.randint[0, kusolist.len()]], int(t.seconds/60)))
             else:
                 flag = True
                 for t in TweetTime:

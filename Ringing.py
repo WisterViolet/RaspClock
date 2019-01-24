@@ -13,6 +13,8 @@ mc = ''
 def stopCallBack(channel):
     global mc
     mc.stop()
+    mc.play_media('./static/great.mp3', 'audio/mp3')
+    time.sleep(30)
     global flag
     flag = False
 
